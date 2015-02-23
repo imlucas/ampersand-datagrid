@@ -1,0 +1,10 @@
+.jshintrc
+.jsfmtrc
+.travis.yml
+.zuul.yml
+
+bin/
+examples/
+test/
+bench/
+bin/*-bench.js

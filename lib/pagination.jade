@@ -1,0 +1,9 @@
+ul.pagination
+  li(class=page===0 ? 'disabled' : ''): a(href="#", data-hook="#{page-1}") &laquo;
+  - for (var i = Math.max(0, page-2); i <= page+2; i++) {
+    if page == i
+      li.active: a(href="#", data-hook='current-page') #{i+1}
+    else
+      li: a(href="#", data-hook="#{i}") #{i+1}
+  - }
+  li: a(href="#", data-hook="#{page+1}") &raquo;

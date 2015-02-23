@@ -1,0 +1,30 @@
+.datagrid {
+  overflow-x: scroll;
+  .table {
+    border-top: 0;
+  }
+  .table > thead > tr > th,
+  .table > tbody > tr > td {
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .table > thead > tr > th:first-child,
+  .table > tbody > tr > td:first-child {
+    text-align: left;
+    white-space: nowrap;
+  }
+  .table > thead > tr > th {
+    white-space: nowrap;
+    background: @panel-default-heading-bg;
+    color: #FFF;
+    border-color: @panel-default-border;
+    border-bottom-width: 1px;
+  }
+  .table > thead > tr > th:first-child {
+    border-left: 0;
+  }
+  .table > thead > tr > th:last-child {
+    border-right: 0;
+  }
+}
