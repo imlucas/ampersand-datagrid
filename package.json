@@ -14,7 +14,7 @@
     "ampersand.js"
   ],
   "scripts": {
-    "test": "mocha",
+    "test": "zuul -- test/index.test.js",
     "test-browser": "zuul --local 3001 --open -- test/index.test.js",
     "ci": "gulp ci",
     "ci-browser": "zuul -- test/index.test.js",

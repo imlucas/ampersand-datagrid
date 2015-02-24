@@ -65,6 +65,7 @@ gulp.task('phantom', function(done) {
   child.on('error', done)
     .on('exit', function(code) {
       if (code === 0) return done();
+
       gutil.log(gutil.colors.red('Error') + ' ' + testFailed + ' tests failed. ' +
       'Try running these tests in your browser:\n\n  npm run test-browser;\n');
       done(new Error(testFailed + ' tests failed'));
@@ -72,7 +73,8 @@ gulp.task('phantom', function(done) {
 });
 
 gulp.task('dist', function() {
-  // @todo: browserify + compile less
+  // @todo: compile less
+  // @todo: can jadeify inline compiled templates?
 });
 
 gulp.task('check dependencies', function(done) {
