@@ -11,7 +11,6 @@
   },
   "keywords": [
     "mongodb.js",
-    "mongoscope",
     "ampersand.js"
   ],
   "scripts": {
@@ -29,6 +28,7 @@
     "ampersand-state": "~4.4.5",
     "ampersand-view": "~7.2.0",
     "component-raf": "~1.2.0",
+    "debug": "~2.1.1",
     "underscore": "~1.8.2"
   },
   "devDependencies": {
@@ -40,6 +40,7 @@
     "gulp": "~3.8.11",
     "gulp-jsfmt": "~0.3.0",
     "gulp-jshint": "~1.9.2",
+    "gulp-spawn": "~0.3.0",
     "gulp-util": "~3.0.3",
     "jade": "~1.9.2",
     "jadeify": "~4.1.0",

@@ -3,6 +3,8 @@ var jshint = require('gulp-jshint');
 var jsfmt = require('gulp-jsfmt');
 var dc = require('dependency-check');
 var gutil = require('gulp-util');
+var spawn = require('child_process').spawn;
+
 
 function check(mode, done) {
   var opts = {
@@ -47,17 +49,39 @@ gulp.task('lint', function() {
     .pipe(jshint({}));
 });
 
-gulp.task('phantom', function() {});
+gulp.task('phantom', function(done) {
+  var testFailed = 0,
+    child = spawn(__dirname + '/node_modules/.bin/zuul',
+      ['--phantom', '--', process.cwd() + '/test/index.test.js']);
+
+  child.stderr.pipe(process.stderr);
+  child.stdout.pipe(process.stdout);
+  child.stdout.on('data', function(buf) {
+    if (buf.toString('utf-8').indexOf('failed ') === 0) {
+      testFailed += 1;
+    }
+
+  });
+  child.on('error', done)
+    .on('exit', function(code) {
+      if (code === 0) return done();
+      gutil.log(gutil.colors.red('Error') + ' ' + testFailed + ' tests failed. ' +
+      'Try running these tests in your browser:\n\n  npm run test-browser;\n');
+      done(new Error(testFailed + ' tests failed'));
+    });
+});
 
 gulp.task('dist', function() {
   // @todo: browserify + compile less
 });
 
-gulp.task('check', ['format', 'lint'], function(done) {
+gulp.task('check dependencies', function(done) {
   check('missing', function(err) {
     if (err) return done(err);
     check('extra', done);
   });
 });
+
+gulp.task('check', ['format', 'lint', 'check dependencies']);
 
 gulp.task('precommit', ['check', 'phantom']);
